@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        var newsData=['全球50大餐廳排行榜公開','遺世獨立的最高境界！座落於絕美景緻中的孤立建築','顛覆你對都會的刻板印象！全球最美麗的城市','紅橙黃綠藍靛紫！世界上27個色彩斑斕的地方','令人深思的藝術品：街頭壁畫','大自然的絕美奇景！全球21座令人屏息的火山口湖','勇者限定！全球13座讓人嚇破膽的天空步道'];
+        
+        var newsNum=0;
+        
+        function nextNews(){
+            newsNum++;
+            if (newsNum>newsData.length-1){
+                newsNum=0;
+            }
+            $('#info').html(newsData[newsNum]);
+        } 
+        $('#info').html(newsData[newsNum]);
+        setInterval(nextNews,4000);
+    })
+    </script>
+</head>
+<body>
+    <div id="info">INFO</div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+main{
+    display: flex;
+}
+
+#spmenu{
+    width: 162px;
+    margin: 0 10px;
+}
+
+#spmenu h3{
+    background-image: url(../images/productMenuBg.png);
+    background-repeat: no-repeat;
+    height: 38px;
+    line-height: 35px;
+    font-size: 1.15em;
+    text-align: center;
+    letter-spacing: 0.2em;
+    color: white;
+    margin: 0 0 5px 0;
+    cursor:pointer;
+        
+}
+
+#spmenu ul ul{
+    margin-bottom: 15px;
+}
+#spmenu ul ul li a{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    border-bottom: 1px dotted white;
+    color: green;
+    padding-bottom: 8px;
+    width: 80%;
+    margin:0 auto 8px auto;
+    position: relative;
+    
+}
+
+#spmenu .thisPage{
+    color: white;
+}
+
+.thisPage::before{
+    font-family: 'fontawesome';
+    content: "\f0da";   
+    color: white;
+    font-size: 1.25em;
+    position: absolute;
+    left: 10px;   
+}
+#sppic{
+    flex: 1 1 calc(100% - 162px);
+}
+
+#sppic ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#sppic li{
+    flex:0 1 calc(33.3% - 36px);
+    margin: 0 8px 10px 8px ;
+    background-color: rgba(255, 255, 255, 0.43);
+    padding: 10px;
+}
+
+#sppic ul li .imgwarp{
+    overflow: hidden;
+}
+
+#sppic ul li img{
+    width: 100%;
+   
+}
+#sppic ul li:hover img{
+    transform: scale(1.3) rotate(8deg);
+    transition: 0.7s;
+}
+
+#sppic ul li h3{
+    border-bottom: 1px dotted black;
+    padding-bottom: 15px;
+}
+#sppic ul li p:nth-of-type(1){
+    border-bottom: 1px dotted black;
+    padding-bottom: 15px;
+}
+
+#sppic ul li p:nth-of-type(1)::before{
+    content: "說明";
+    background-color: red;
+    display: inline-block;
+    margin: 0 3px;
+    padding:3px 6px;
+    border-radius: 15px;  
+    color:white;
+    font-size: 0.9em;
+    
+}
+#sppic ul li p:nth-of-type(2)::before{
+    content: "成分";
+    background-color: red;
+    display: inline-block;
+    margin:0 3px;
+    padding:3px 6px;
+    border-radius: 15px;  
+    color:white;
+    font-size: 0.9em;
+    
+}
+
+
+
+
+
+
+
+
+

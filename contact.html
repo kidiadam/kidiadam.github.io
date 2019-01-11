@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-hant-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="手工皂，精油，天然">
+    <meta name="description" content="NatureCare的產品包括手工皂，精油，全部都是純天然原料製成......">
+    <title>NatureCare</title>
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src='js/jquery-3.3.1.min.js'></script>
+    <script src='js/com.js'></script>
+    <script>
+    $(function(){
+        $('footer').load('footerContent.html');
+        $('header').load('headerContent.html',function(){
+            navjs();
+        });
+        $('#contact').submit(function(){
+            $('.errMsg').remove();
+            
+            if(!$('#name').val()){
+                $('#name').parent().append('<span class="errMsg">*此欄不得為空白</span>')
+            };
+            if(!$('#num').val()&&!$('#email').val()){
+                $('#email').parent().append('<span class="errMsg">*請至少填寫一種聯絡方式</span>')
+            };
+            if($('[name="sex"]:checked').val()==undefined){
+                $('#male').parent().append('<span class="errMsg">*請選擇您的性別</span>')
+            };
+            if($('[name="ct[]"]:checked').length<1){
+                $('#ct1').parent().append('<span class="errMsg">*請至少選擇一項</span>')
+            };
+            if($('.errMsg').length<1){
+                $.ajax({
+                    url:'contactMailTo.php',
+                    type:'post',
+                    data:$('#contact').serialize(),
+                    error:function(){
+                        alert('傳送失敗')
+                    },success:function(){
+                        alert('傳送成功')
+//                        $('#reset').click();
+                        $('#submit').attr('disabled','true').addClass('btnDisable');
+                    }
+                    
+                        
+                })
+            }
+            
+            return false;
+        })
+        $('#reset').click.removeAttr('disabled').removeClass('btnDisable');
+        
+    })
+    </script>
+    <style>
+        #contact{
+            width: 95%;
+            margin: 0 auto;
+        }
+        #contact fieldset{
+            margin: 15px;
+            border: none;
+            border-top: 1px dotted white;
+        }
+        #contact fieldset legend{
+            background-color: #e87b7b;
+            padding: 5px 15px;
+            border-radius: 35%
+        }
+        #contact [for="detail"],
+        #contact [for="detail"]+span{
+            vertical-align: top;
+            
+        }
+        #contact>p:last-child{
+            text-align: center;
+        }
+        #contact p label:nth-child(1){
+            width: 90px;
+            display: inline-block;
+            text-align-last: justify;
+            font-weight: bolder;
+        }
+        #name,#num,#email,#detail{
+            width:calc(100% - 150px);
+        }
+/*        ^=表示開頭包含..字串，$=表示結尾包含 *=表示中間包含 */
+        #contact [for^="ct"],
+        #contact [for$="male"]{
+            margin-right: 15px;
+        }
+        #detail{
+            resize: none;
+            height: 150px;
+        }
+        #submit,#reset{
+            width: 130px;
+            margin: 10px;
+        }
+        .errMsg{
+            color: #980d0d;
+            margin-left: 113px;
+            display: block;
+            font-size: 0.8em;
+            font-weight: bolder;
+            
+        }
+        
+        @media (min-width:1025px){
+            #contact{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            #contact fieldset{
+                flex:1;
+                border: 1px dotted white;
+            }
+            #contact>p:last-child{
+                flex:0 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+   <header>
+    </header>
+   <div id="banner">
+       <img src="images/banner.jpg" alt="NatureCare形象圖">
+   </div>
+   <main>
+        <form id="contact" action="contactMailTo.php" method="post">
+            <fieldset>
+                <legend>聯絡事項</legend>
+                <p>
+                    <label for="command">聯絡項目</label><span>：</span>
+                    <select name="command" id="command">
+                        <option value="none" disabled selected>---請選取---</option>
+                        <option value="服務建議">意見回饋</option>
+                        <option value="產品諮詢">產品諮詢</option>
+                        <option value="其他建議">其他建議</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="detail">內容</label><span>：</span>
+                    <textarea name="detail" id="detail" placeholder="請說明您想反映的內容事項......."></textarea>
+                </p>
+          </fieldset>
+           <fieldset>
+               <legend>聯絡資訊</legend>
+                <p>
+                   <label for="name">姓名</label><span>：</span>
+                   <input type="text" name="name" id="name">
+                </p>
+                <p>
+                  <label for="">性別</label><span>：</span>
+                   <input type="radio" name="sex" id="male" value="男">
+                   <label for="male">男</label> 
+                   <input type="radio" name="sex" id="female" value="女">
+                   <label for="female">女</label>
+                </p>
+                <p>
+                    <label for="num">電話號碼</label><span>：</span>
+                    <input type="tel" name="num" id="num">
+                </p>
+                <p>
+                    <label for="email">電子郵件</label><span>：</span>
+                    <input type="email" name="email" id="email">  
+                </p>
+                <p> 
+                    <label for="">聯絡時間</label><span>：</span>
+                    <input type="checkbox" name="ct[]" id="ct1" value="9-12">
+                    <label for="ct1">09:00~12:00</label>   
+                    <input type="checkbox" name="ct[]" id="ct2" value="14-17">
+                    <label for="ct2">14:00~17:00</label>   
+                    <input type="checkbox" name="ct[]" id="ct3" value="19-21">
+                    <label for="ct3">19:00~21:00</label>   
+                </p>
+           </fieldset>
+           <p>
+               <input type="submit" name="submit" id="submit" value="送出">
+               <input type="reset" name="reset" id="reset" value="重新填寫">
+           </p>
+        </form>
+   </main>
+   <footer>
+   </footer>
+    
+</body>
+</html>

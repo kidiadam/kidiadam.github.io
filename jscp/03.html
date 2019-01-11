@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #info{
+            position: fixed;
+            top:0;
+            right:0;
+        }
+    </style>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    
+    <script>
+ $(document).ready(function(){
+     
+     function showtime(){
+         
+        var now=new Date();
+        var nowY=now.getFullYear();
+        var nowM=now.getMonth()+1;
+        var nowD=now.getDate();
+        var nowW=now.getDay();
+        var nowH=now.getHours();
+        var nowI=now.getMinutes();
+        var nowS=now.getSeconds();
+         
+        if (nowS<10){
+            nowS='0'+nowS;
+        }
+        if (nowM<10){
+            nowM='0'+nowM;
+        }
+         var week=['一','二','三','四','五','六','日'];
+         nowW=week[nowW-1];
+//        if (nowW==1){
+//            nowW='一';
+//        } else if (nowW==2){
+//            nowW='二';
+//        }else if(nowW==3){
+//            nowW='三';
+//        }else if(nowW==4){
+//            nowW='四';
+//        }else if(nowW==5){
+//            nowW='五';
+//        }else if(nowW==6){
+//            nowW='六';
+//        }else{
+//            nowW='日';
+//        }
+        
+        var say;
+        if (nowH>=18){
+            say='晚安';
+        }else if (nowH>=12){
+            say='午安';
+        }else{
+            say='早安';
+        }
+
+        var myDate=nowY+'年'+nowM+'月'+nowD+'日'+'星期'+nowW+' '+nowH+':'+nowI+':'+nowS+' '+say;
+
+        $('#info').html('<h3>'+myDate+'</h3>'); 
+     }
+     
+     showtime();  
+     setInterval(showtime,1000);
+     
+    })
+    </script>
+</head>
+<body>
+   <div id="info">Info</div>
+    
+</body>
+</html>
