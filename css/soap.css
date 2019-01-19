@@ -1,9 +1,0 @@
-#sppic ul{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-#sppic ul li{
-    flex: 1 1 50%;
-}
-
